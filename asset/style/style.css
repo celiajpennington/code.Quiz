@@ -11,8 +11,10 @@
     width: 100%;
     text-align: center;
     display: flex;
-   
+}
 
+.hide {
+    display: none;
 }
 .highScore {
     margin-left: 15px;
