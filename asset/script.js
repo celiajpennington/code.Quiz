@@ -128,7 +128,7 @@ function checkAnswer () { //check answers and input time punishment stuff
 function quizEnd() {
   clearInterval(timerState)
   questionsEl.setAttribute("class" , "hide")
-  doneEl.removeAttribute("class" , "hide")
+  doneEl.removeAttribute("class")
 console.log("Quiz is over!")
 //clearInterval(timerState)
 //hide questions div unhide all done div
