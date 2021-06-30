@@ -21,6 +21,8 @@
     //Add clear button that will clear out local storage
     //Go back button link to index
 
+//This is my quiz question array I will go through to check answers
+
     var quizQuestionContainer = [
     
       {
@@ -47,19 +49,21 @@
           answer: "console.log" //console.log
         },
       ]; 
-var quizQuestionsIndex = 0; //This is saying start at the first question
+
+      //declaring vars and grabbing from html
+var quizQuestionsIndex = 0; //This is belongs to the start at the first question
 var quizTime = quizQuestionContainer.length * 15; //creating the timer
 var timerState; //holds all the time info and use it to be able to set interval and clear and interval
-var timerEl = document.querySelector(".timer");
-var introEl = document.querySelector(".intro");
-var questionsEl = document.querySelector(".questions-answers");
-var doneEl = document.querySelector(".quizDone");
-var inputEl = document.querySelector(".input-group");
-var highScoreEl = document.querySelector("highScoresListCard");
-var startButton = document.querySelector (".startButton");
-var submitButton = document.querySelector("#SubmitButton");
-
-//Create a -- helper function
+var timerEl = document.querySelector(".timer"); //the actual timer
+var introEl = document.querySelector(".intro"); //the first div or intro div with start button
+var questionsEl = document.querySelector(".questions-answers"); //the second div with questions
+var doneEl = document.querySelector(".quizDone"); //quiz done page
+var inputEl = document.querySelector(".input-group"); //initials input div
+var highScoreEl = document.querySelector("highScoresListCard"); //highscores div will need to add a link to the hsin nav bar
+var startButton = document.querySelector (".startButton"); //start button to start quiz
+var submitButton = document.querySelector("#SubmitButton");// submit button to submit initials
+var answersList = document.querySelector(".answersList");
+//Create a -- helper function- this is setting timerEl to decrement (minus)
 function setTimeMinus() {
   quizTime --;
   timerEl.textContent = quizTime;
@@ -68,6 +72,8 @@ function setTimeMinus() {
     }
 
 };
+
+//This is hiding the appropriate divs as needed
 function startQuiz() {
   introEl.setAttribute("class" , "hide") //CSS property placing it in the class attri and placing on introel which hides it
   questionsEl.removeAttribute("class" , "hide")
@@ -79,21 +85,63 @@ function startQuiz() {
 
 
 function cycleQuestions() {
-console.log("cycling questions");
+  var individualQuestion = quizQuestionContainer [
+    quizQuestionsIndex              //line 54
+  ]
+ var questionContent = document.querySelector (".questionContent")
+questionContent.textContent = individualQuestion.question; //Question container, quiz question index find the question
+answersList.innerHTML = " ";
+
+individualQuestion.choice.forEach(function(option){ //creating a button for each option in array
+  var choiceButton = document.createElement("button")
+  choiceButton.setAttribute("value", option ) //setting value for choice
+  choiceButton.setAttribute("class", "answersList")
+  choiceButton.textContent = option
+choiceButton.onclick = checkAnswer
+  
+  answersList.appendChild (choiceButton)
+})
+
+
+
 };
+
 function checkAnswer () { //check answers and input time punishment stuff
+  if (this.value === quizQuestionContainer[quizQuestionsIndex].answer){
+    console.log("Correct!") //Text Content Correct!
+    
+  } else {
+    quizTime = quizTime - 10;
+    timerEl.textContent = quizTime
+    textContent = "Wrong!";
+    console.log("wrong") ///need to have wrong show up
+  }
+ quizQuestionsIndex ++ //switches to the next question
+  if (quizQuestionsIndex === quizQuestionContainer.length) {
+    quizEnd () 
 
+  } else { 
+    cycleQuestions () //redisplay the next index- question
+}};
 
-};
-
+//quiz end div
 function quizEnd() {
+  clearInterval(timerState)
+  questionsEl.setAttribute("class" , "hide")
+  doneEl.removeAttribute("class" , "hide")
 console.log("Quiz is over!")
+//clearInterval(timerState)
+//hide questions div unhide all done div
 };
 function saveHighScore(){
-
+  highScoreEl.setAttribute("class" , "hide")
+  doneEl.removeAttribute("class" , "hide")
 
 };
-startButton.onclick = startQuiz; /// addEventList
+startButton.onclick = startQuiz; /// this is also addEventList
+submitButton.onclick = saveHighScore
+//submit button have it fire the save high score function
+
 
 
 

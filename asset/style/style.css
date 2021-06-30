@@ -20,36 +20,55 @@
     margin-left: 15px;
     text-decoration: none;
     color: black;
+    font-size: medium;
+
    
 }
 .timer {
    
     margin-right: 15px;
     margin-left: 85%;
+    color: black;
+    font-size: medium;
 }
 .card-body  {
-    text-align: center;
-    border: thin solid black;
+   text-align: center;
+   border: thin solid black;
    margin-left: 25%;
    margin-right: 25%;
    padding: 100px;
+   background-color: peachpuff;
+   
 }
-.intro {
-    margin-bottom: 15px;
-    background-color: peachpuff;
-}
+
 .card-title {
     margin-bottom: 20px;
-    border-bottom: thin solid black;
+    
+    font-size: xx-large;
+    text-align: center;
+    
+} .questions-answers { /** I can't get any style to stick in divs after intro. I can effect the buttons and the h1 but not the card itself**/
+   
+    background-color: peachpuff;
+border: thin solid black;
+}
+.card-title  .questionContent {
+    
+    text-align: center;
 }
 .card-text {
     text-align: left;
     padding-left: 15px;
 }
-.questions-answers {
+/**.questions-answers {
     background-color: peachpuff;
+    
 }
-.questions {
+.questions-answers .questionContent {
+    border-bottom: black solid;
+    text-align: center;
+}
+/**.questions {
     margin-bottom: 15px ;
     font-size: large;
     font-weight: bold;
@@ -57,6 +76,7 @@
 /**.answersList li {
 padding: 15px;
 }**/
+
 .startButton {
     padding: 15px;
     margin-top: 15px;
@@ -64,23 +84,42 @@ padding: 15px;
     background-color: mintcream;
     border-radius: 15px;
 }
-
-.answersList {
-    list-style: none;
-    /**padding-right: 300px;**/
+.answersList{
+    margin-left: 475px;
+    
 }
-.answersList li {
+.answersList button{
+    padding: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: mintcream;
+    border-radius: 15px;
+    text-align: center;
+    margin: 20px;
+}
+
+/**.answersList {
+    text-align: center;
+    border: thin solid black;
+   margin-left: 25%;
+   margin-right: 25%;
+   padding: 100px;
+}
+    
+
+/**.answersList {
    
     margin-top: 15px;
     height: 75px;
     width: auto; 
     text-align: left;
-}
-.answersList button {
+}**/
+/**.questions-answers {
     padding: 10px;
     border: thin solid black;
     margin-right: 15px;
     border-radius: 30px;
+    text-align: left;
     
 }
 .quizDone {
